@@ -14,6 +14,8 @@ import 'framework7/css/framework7.bundle.css';
 import '../css/icons.css';
 import '../css/app.css';
 
+import store from '../store';
+
 // Import App Component
 import App from '../components/app.vue';
 
@@ -24,7 +26,7 @@ Framework7.use(Framework7Vue);
 new Vue({
   el: '#app',
   render: (h) => h(App),
-
+  store,
   // Register App Component
   components: {
     app: App

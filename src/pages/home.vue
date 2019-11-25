@@ -1,10 +1,12 @@
 <template>
 <f7-page name="home">
- {{ employees }}
+  {{ allEmployees }}
 </f7-page>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   name: "home",
   data() {
@@ -12,11 +14,23 @@ export default {
       employees: []
     }
   },
+  computed: mapGetters(['allEmployees']),
+  methods: {
+    ...mapActions(['fetchEmployees', 'addEmployee', 'updateEmployee', 'deleteEmployee'])
+  },
   created() {
-    fetch('http://dummy.restapiexample.com/api/v1/employees')
-      .then(res => res.json())
-      .then(res => this.employees = res)
-      .catch(err => console.log(err));
+    // this.fetchEmployees();
+    // this.addEmployee({
+    //   "name": "test123",
+    //   "salary": "123",
+    //   "age": "23"
+    // });
+    // this.updateEmployee({
+    //   "name": "test123",
+    //   "salary": "123",
+    //   "age": "23"
+    // }, 719);
+    // this.deleteEmployee(719);
   }
 }
 </script>
