@@ -1,36 +1,24 @@
 <template>
 <f7-page name="home">
-  {{ allEmployees }}
+  <Employee v-for="item in allEmployees" v-bind:key="item.id" v-bind:employee="item"/>
 </f7-page>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import Employee from '../components/employee.vue';
 
 export default {
   name: "home",
-  data() {
-    return {
-      employees: []
-    }
+  components: {
+    Employee
   },
   computed: mapGetters(['allEmployees']),
   methods: {
     ...mapActions(['fetchEmployees', 'addEmployee', 'updateEmployee', 'deleteEmployee'])
   },
   created() {
-    // this.fetchEmployees();
-    // this.addEmployee({
-    //   "name": "test123",
-    //   "salary": "123",
-    //   "age": "23"
-    // });
-    // this.updateEmployee({
-    //   "name": "test123",
-    //   "salary": "123",
-    //   "age": "23"
-    // }, 719);
-    // this.deleteEmployee(719);
+    this.fetchEmployees();
   }
 }
 </script>
