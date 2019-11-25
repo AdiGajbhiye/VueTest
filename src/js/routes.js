@@ -2,6 +2,7 @@
 import HomePage from '../pages/home.vue';
 import AboutPage from '../pages/about.vue';
 import FormPage from '../pages/form.vue';
+import EmployeeFormPage from '../pages/employee-form.vue';
 
 
 import DynamicRoutePage from '../pages/dynamic-route.vue';
@@ -21,7 +22,10 @@ var routes = [
     path: '/form/',
     component: FormPage,
   },
-
+  {
+    path: '/new/',
+    component: EmployeeFormPage,
+  },
 
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
