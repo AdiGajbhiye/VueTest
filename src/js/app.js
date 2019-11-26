@@ -16,7 +16,6 @@ import '../css/app.css';
 
 
 import store from '../store';
-import routes1 from './routes.js';
 // Import App Component
 import App from '../components/app.vue';
 
@@ -26,15 +25,10 @@ Framework7.use(Framework7Vue);
 // Init App
 new Vue({
   el: '#app',
-  framework7: {
-    root: '#app',
-    // Map routes
-    routes: routes1
-  },
   render: (h) => h(App),
   store,
   // Register App Component
   components: {
     app: App
-  },
+  }
 });

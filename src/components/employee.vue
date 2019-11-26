@@ -7,7 +7,7 @@
         <f7-col>Age: {{ employee.employee_age }}</f7-col>
         <f7-col>Salary: {{ employee.employee_salary }}</f7-col>
         <f7-col>
-          <f7-button fill color="blue">Edit</f7-button>
+          <f7-button fill color="blue" @click="onEdit">Edit</f7-button>
         </f7-col>
         <f7-col>
           <f7-button fill color="red" @click="onDelete">Delete</f7-button>
@@ -30,6 +30,9 @@ export default {
     ...mapActions(['deleteEmployee']),
     onDelete() {
       this.deleteEmployee(this.employee.id);
+    },
+    onEdit() {
+      this.$f7router.navigate('/form/', { props: { employee: this.employee } });
     }
   }
 }
