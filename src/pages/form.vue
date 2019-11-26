@@ -1,6 +1,6 @@
 <template>
   <f7-page name="form">
-    <f7-navbar title="Edit" back-link="Back"></f7-navbar>
+    <f7-navbar v-bind:title="display" back-link="Back"></f7-navbar>
 
     <f7-block-title>Form Example</f7-block-title>
     <f7-list no-hairlines-md>
@@ -8,12 +8,19 @@
         label="Name"
         type="text"
         placeholder="Your name"
-        v-model="employee.employee_name"
+        v-bind:value="employee.employee_name"
+        @input="employee.employee_name = $event.target.value"
       ></f7-list-input>
     </f7-list>
 
     <f7-list no-hairlines-md>
-      <f7-list-input label="Age" type="text" placeholder="Your age" v-model="employee.employee_age"></f7-list-input>
+      <f7-list-input
+        label="Age"
+        type="text"
+        placeholder="Your age"
+        v-bind:value="employee.employee_age"
+        @input="employee.employee_age = $event.target.value"
+      ></f7-list-input>
     </f7-list>
 
     <f7-list no-hairlines-md>
@@ -21,7 +28,8 @@
         label="Salary"
         type="text"
         placeholder="Your salary"
-        v-model="employee.employee_salary"
+        v-bind:value="employee.employee_salary"
+        @input="employee.employee_salary = $event.target.value"
       ></f7-list-input>
     </f7-list>
 
@@ -37,11 +45,20 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ["employee"],
+  props: ["employee", "edit"],
+  data() {
+    return {
+      display: ""
+    };
+  },
+  created() {
+    this.display = this.edit ? "Edit" : "Add";
+  },
   methods: {
-    ...mapActions(["updateEmployee"]),
+    ...mapActions(["updateEmployee", "addEmployee"]),
     onSave() {
-      this.updateEmployee(this.employee, this.employee.id);
+      if (this.edit) this.updateEmployee(this.employee, this.employee.id);
+      else this.addEmployee(this.employee);
     }
   }
 };

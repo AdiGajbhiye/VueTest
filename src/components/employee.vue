@@ -32,7 +32,7 @@ export default {
       this.deleteEmployee(this.employee.id);
     },
     onEdit() {
-      this.$f7router.navigate('/form/', { props: { employee: this.employee } });
+      this.$f7router.navigate('/form/', { props: { employee: this.employee, edit: true } });
     }
   }
 }
